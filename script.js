@@ -21,6 +21,11 @@ function fieldclicked(id) {
     getBackgroundURL();
     checkForWinner();
     if (winner == true) {
+        let headline = document.getElementById('headline')
+        headline.innerHTML = 'Gewonnen!'
+        headline.style.fontSize = '20px'
+        document.getElementById('table').style.pointerEvents = 'none';
+        document.getElementById('button').style.display = 'block';
         console.log('es gibt einen gewinner')
     }
 };
@@ -69,3 +74,7 @@ function getBackgroundURL(){
     field8 = document.getElementById('8').style.backgroundImage;
     field9 = document.getElementById('9').style.backgroundImage;
 };
+
+function refresh() {
+    document.location.reload(true);
+}
