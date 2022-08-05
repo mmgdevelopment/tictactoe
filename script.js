@@ -17,7 +17,9 @@ let field9;
 
 
 function fieldclicked(id) {
-    showPlayerIcon(id);
+    let field = document.getElementById(id);
+    showPlayerIcon(field);
+    field.style.pointerEvents = 'none';
     getBackgroundURL();
     checkForWinner();
     if (winner == true) {
@@ -27,11 +29,11 @@ function fieldclicked(id) {
         document.getElementById('table').style.pointerEvents = 'none';
         document.getElementById('button').style.display = 'block';
         console.log('es gibt einen gewinner')
-    }
+    };
+
 };
 
-function showPlayerIcon(id){
-    let field = document.getElementById(id);
+function showPlayerIcon(field){
     if (field.style.backgroundImage != crossURL && field.style.backgroundImage != circleURL){
         if (currentPlayer == 'crossPlayer'){
             field.style.backgroundImage = crossURL;

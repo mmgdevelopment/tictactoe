@@ -4,6 +4,7 @@ body {
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.05);
 }
+
 h3 {
     text-align: center;
 }
@@ -42,9 +43,7 @@ button {
 button:hover {
     transform: scale(1.05);
     transition: all ease-in-out 125ms;
-
 }
-
 
 td {
     height: 100px;
