@@ -86,5 +86,25 @@ table {
 
 }
 
+.winner {
+    animation-name: pulse;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        background-color: red;
+    }
+    100% {
+        transform: scale(1.2);
+        background-color: darkred;
+    }
+    
+}
 
 
