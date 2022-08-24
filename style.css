@@ -71,9 +71,11 @@ tr:last-child td {
     border-bottom: none;
 }
 
-td:hover {
-    background-color: lightgray;
-    transition: all ease-in-out 125ms;
+@media (hover: hover){
+    td:hover {
+        background-color: lightgray;
+        transition: all ease-in-out 125ms;
+    }
 }
 
 table {
