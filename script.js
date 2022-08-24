@@ -15,6 +15,23 @@ let field7;
 let field8;
 let field9;
 
+function init(){
+    renderCurrentPlayer();
+}
+
+function renderCurrentPlayer(){
+    crossPlayer = document.getElementById('crossPlayer');
+    circlePlayer = document.getElementById('circlePlayer');
+
+    if (currentPlayer == 'crossPlayer'){
+        crossPlayer.style.opacity = '1';
+        circlePlayer.style.opacity = '0.1';
+    } else if (currentPlayer == 'circlePlayer'){
+        circlePlayer.style.opacity = '1';
+        crossPlayer.style.opacity = '0.1';
+    }
+}
+
 
 function fieldclicked(id) {
     let field = document.getElementById(id);
@@ -22,13 +39,14 @@ function fieldclicked(id) {
     field.style.pointerEvents = 'none';
     getBackgroundURL();
     checkForWinner();
+
+    
     if (winner == true) {
-        let headline = document.getElementById('headline')
-        headline.innerHTML = 'Gewonnen!'
-        headline.style.fontSize = '20px'
+        let headline = document.getElementById('headline');
+        headline.innerHTML = 'Gewonnen!';
+        headline.style.fontSize = '20px';
         document.getElementById('table').style.pointerEvents = 'none';
         document.getElementById('button').style.display = 'block';
-        console.log('es gibt einen gewinner')
     };
 
 };
@@ -42,7 +60,8 @@ function showPlayerIcon(field){
             field.style.backgroundImage = circleURL;
             currentPlayer = 'crossPlayer';
         };
-    }; 
+    };
+    renderCurrentPlayer(); 
 };
 
 function checkForWinner(){
@@ -62,9 +81,19 @@ function checkForWinner(){
         winner = true;
     } else if (field3 == field5 && field5 == field7 && field3 != '') {
         winner = true;
-    };
+    } else if (field1 != '' && field2 != '' && field3 != '' && field4 != '' &&
+                field5 != '' && field6 != '' && field7 != '' && field8 != '' && field9 != '' && winner == false){
+                    noWinner();
+                }
 };
 
+function noWinner(){
+    let headline = document.getElementById('headline');
+    headline.innerHTML = 'Unentschieden!';
+    headline.style.fontSize = '20px';
+    document.getElementById('table').style.pointerEvents = 'none';
+    document.getElementById('button').style.display = 'block';
+}
 function getBackgroundURL(){
     field1 = document.getElementById('1').style.backgroundImage;
     field2 = document.getElementById('2').style.backgroundImage;

@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 </head>
-<body>
+<body onload="init()">
     <header>
         <h1>Tic Tac Toe</h1>
     </header>
 
     <div class="canvas">
         <h3 id="headline">Willkommen</h2>
+            <div class="playerContainer">
+                <img id="crossPlayer" src="./img/cross.svg" alt="" srcset="">
+                <img id="circlePlayer" src="./img/circle.svg" alt="" srcset="">
+            </div>
         <table id="table">
             <tr>
                 <td onclick="fieldclicked(1)" id="1"></td>
