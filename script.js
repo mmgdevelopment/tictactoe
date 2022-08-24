@@ -47,9 +47,9 @@ function fieldclicked(id) {
     if (winner == true) {
         let headline = document.getElementById('headline');
         headline.innerHTML = 'Gewonnen!';
-        headline.style.fontSize = '20px';
         document.getElementById('table').style.pointerEvents = 'none';
-        document.getElementById('button').style.display = 'block';
+        document.getElementById('button').style.pointerEvents = 'auto';
+        document.getElementById('button').style.opacity = '1';
         crossPlayer = document.getElementById('crossPlayer');
         circlePlayer = document.getElementById('circlePlayer');
         circlePlayer.style.opacity = '0.1';
@@ -121,13 +121,14 @@ function checkForWinner(){
 function noWinner(){
     let headline = document.getElementById('headline');
     headline.innerHTML = 'Unentschieden!';
-    headline.style.fontSize = '20px';
     document.getElementById('table').style.pointerEvents = 'none';
     document.getElementById('button').style.display = 'block';
     crossPlayer = document.getElementById('crossPlayer');
     circlePlayer = document.getElementById('circlePlayer');
     circlePlayer.style.opacity = '0.1';
     crossPlayer.style.opacity = '0.1';
+    document.getElementById('button').style.pointerEvents = 'auto';
+    document.getElementById('button').style.opacity = '1';
 }
 function getBackgroundURL(){
     field1 = document.getElementById('1').style.backgroundImage;
@@ -144,15 +145,15 @@ function getBackgroundURL(){
 function refresh() {
     currentPlayer = 'crossPlayer';
     winner = false;
-    for (let i = 1; i < 9; i++) {
+    for (let i = 1; i < 10; i++) {
         id = i.toString();
         domElemnent(id).style.backgroundImage = '';
         domElemnent(id).classList.remove('winner');
-        domElemnent(id).style.pointerEvents = 'auto';
+        domElemnent(id).style.pointerEvents = 'inherit';
     }
     renderCurrentPlayer();
     headline.innerHTML = 'Willkommen!';
-    headline.style.fontSize = 'inherit';
-    document.getElementById('table').style.pointerEvents = 'auto';
-    document.getElementById('button').style.display = 'none';
+    document.getElementById('table').style.pointerEvents = 'inherit';
+    document.getElementById('button').style.opacity = '0';
+    document.getElementById('button').style.pointerEvents = 'none';
 }
