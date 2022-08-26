@@ -8,15 +8,34 @@ let winner = false;
 let crossPlayer;
 let circlePlayer;
 
-let field1;
-let field2;
-let field3;
-let field4;
-let field5;
-let field6;
-let field7;
-let field8;
-let field9;
+let posibleFields = [];
+
+let field1 = '';
+let field2 = '';
+let field3 = '';
+let field4 = '';
+let field5 = '';
+let field6 = '';
+let field7 = '';
+let field8 = '';
+let field9 = '';
+
+let fields = [
+    field1,
+    field2,
+    field3,
+    field4,
+    field5,
+    field6,
+    field7,
+    field8,
+    field9
+];
+
+
+function getRandomInteger(max){
+    return Math.floor(Math.random() * max)
+}
 
 function init(){
     crossPlayer = document.getElementById('crossPlayer');
@@ -46,8 +65,39 @@ function fieldclicked(id) {
     if (winner == true) {
         gameFinished('Gewonnen!')
     };
-    renderCurrentPlayer(); 
+    
+    if(winner == false){
+        domElemnent('table').style.pointerEvents = 'none';
+        renderCurrentPlayer(); 
+        setTimeout(computerPlayer, 500);  
+    }
+
 };
+
+function computerPlayer(){
+    posibleFields = [];
+    for (let i = 0; i < fields.length; i++) {
+        const field = fields[i];
+        if (field == ''){
+            posibleFields.push(i)
+        }
+    }
+    index = posibleFields[getRandomInteger(posibleFields.length)];
+
+    let field = document.getElementById(index + 1);
+    showPlayerIcon(field);
+    field.style.pointerEvents = 'none';
+    getBackgroundURL();
+    checkForWinner();
+    if (winner == true) {
+        gameFinished('Gewonnen!')
+    };
+    if(winner == false){
+        domElemnent('table').style.pointerEvents = 'inherit';
+        renderCurrentPlayer();
+    }
+    
+}
 
 function showPlayerIcon(field){
     if (field.style.backgroundImage != crossURL && field.style.backgroundImage != circleURL){
@@ -63,48 +113,48 @@ function showPlayerIcon(field){
 };
 
 function checkForWinner(){
-    if (field1 == field2 && field2 == field3 && field1 != '') {
+    if (fields[0] == fields[1] && fields[1] == fields[2] && fields[1] != '') {
         winner = true;
         domElemnent('1').classList.add('winner');
         domElemnent('2').classList.add('winner');
         domElemnent('3').classList.add('winner');
-    } else if (field4 == field5 && field5 == field6 && field4 != '') {
+    } else if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3] != '') {
         winner = true;
         domElemnent('4').classList.add('winner');
         domElemnent('5').classList.add('winner');
         domElemnent('6').classList.add('winner');
-    } else if (field7 == field8 && field8 == field9 && field7 != '') {
+    } else if (fields[6] == fields[7] && fields[7] == fields[8] && fields[6] != '') {
         winner = true;
         domElemnent('7').classList.add('winner');
         domElemnent('8').classList.add('winner');
         domElemnent('9').classList.add('winner');
-    } else if (field1 == field4 && field4 == field7 && field1 != '') {
+    } else if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0] != '') {
         winner = true;
         domElemnent('1').classList.add('winner');
         domElemnent('4').classList.add('winner');
         domElemnent('7').classList.add('winner');
-    } else if (field2 == field5 && field5 == field8 && field2 != '') {
+    } else if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1] != '') {
         winner = true;
         domElemnent('2').classList.add('winner');
         domElemnent('5').classList.add('winner');
         domElemnent('8').classList.add('winner');
-    } else if (field3 == field6 && field6 == field9 && field3 != '') {
+    } else if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2] != '') {
         winner = true;
         domElemnent('3').classList.add('winner');
         domElemnent('6').classList.add('winner');
         domElemnent('9').classList.add('winner');
-    } else if (field1 == field5 && field5 == field9 && field1 != '') {
+    } else if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0] != '') {
         winner = true;
         domElemnent('1').classList.add('winner');
         domElemnent('5').classList.add('winner');
         domElemnent('9').classList.add('winner');
-    } else if (field3 == field5 && field5 == field7 && field3 != '') {
+    } else if (fields[2] == fields[4] && fields[4] == fields[6] && fields[2] != '') {
         winner = true;
         domElemnent('3').classList.add('winner');
         domElemnent('5').classList.add('winner');
         domElemnent('7').classList.add('winner');
-    } else if (field1 != '' && field2 != '' && field3 != '' && field4 != '' &&
-                field5 != '' && field6 != '' && field7 != '' && field8 != '' && field9 != '' && winner == false){
+    } else if (fields[0] != '' && fields[1] != '' && fields[2] != '' && fields[3] != '' &&
+                fields[4] != '' && fields[5] != '' && fields[6] != '' && fields[7] != '' && fields[8] != '' && winner == false){
                     gameFinished('Unentschieden!');
                 }
 };
@@ -121,15 +171,11 @@ function gameFinished(result){
 }
 
 function getBackgroundURL(){
-    field1 = document.getElementById('1').style.backgroundImage;
-    field2 = document.getElementById('2').style.backgroundImage;
-    field3 = document.getElementById('3').style.backgroundImage;
-    field4 = document.getElementById('4').style.backgroundImage;
-    field5 = document.getElementById('5').style.backgroundImage;
-    field6 = document.getElementById('6').style.backgroundImage;
-    field7 = document.getElementById('7').style.backgroundImage;
-    field8 = document.getElementById('8').style.backgroundImage;
-    field9 = document.getElementById('9').style.backgroundImage;
+    for (let i = 0; i < fields.length; i++) {
+        j = i + 1;
+        id = j.toString();
+        fields[i] = document.getElementById(id).style.backgroundImage;
+    }
 };
 
 function refresh() {
