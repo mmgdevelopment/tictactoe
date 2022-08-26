@@ -5,6 +5,9 @@ let currentPlayer = 'crossPlayer';
 
 let winner = false;
 
+let crossPlayer;
+let circlePlayer;
+
 let field1;
 let field2;
 let field3;
@@ -16,6 +19,8 @@ let field8;
 let field9;
 
 function init(){
+    crossPlayer = document.getElementById('crossPlayer');
+    circlePlayer = document.getElementById('circlePlayer');
     renderCurrentPlayer();
 }
 function domElemnent(id){
@@ -23,9 +28,6 @@ function domElemnent(id){
 }
 
 function renderCurrentPlayer(){
-    crossPlayer = document.getElementById('crossPlayer');
-    circlePlayer = document.getElementById('circlePlayer');
-
     if (currentPlayer == 'crossPlayer'){
         crossPlayer.style.opacity = '1';
         circlePlayer.style.opacity = '0.1';
@@ -35,27 +37,16 @@ function renderCurrentPlayer(){
     }
 }
 
-
 function fieldclicked(id) {
     let field = document.getElementById(id);
     showPlayerIcon(field);
     field.style.pointerEvents = 'none';
     getBackgroundURL();
     checkForWinner();
-
-    
     if (winner == true) {
-        let headline = document.getElementById('headline');
-        headline.innerHTML = 'Gewonnen!';
-        document.getElementById('table').style.pointerEvents = 'none';
-        document.getElementById('button').style.pointerEvents = 'auto';
-        document.getElementById('button').style.opacity = '1';
-        crossPlayer = document.getElementById('crossPlayer');
-        circlePlayer = document.getElementById('circlePlayer');
-        circlePlayer.style.opacity = '0.1';
-        crossPlayer.style.opacity = '0.1';
+        gameFinished('Gewonnen!')
     };
-
+    renderCurrentPlayer(); 
 };
 
 function showPlayerIcon(field){
@@ -68,7 +59,7 @@ function showPlayerIcon(field){
             currentPlayer = 'crossPlayer';
         };
     };
-    renderCurrentPlayer(); 
+    
 };
 
 function checkForWinner(){
@@ -114,22 +105,21 @@ function checkForWinner(){
         domElemnent('7').classList.add('winner');
     } else if (field1 != '' && field2 != '' && field3 != '' && field4 != '' &&
                 field5 != '' && field6 != '' && field7 != '' && field8 != '' && field9 != '' && winner == false){
-                    noWinner();
+                    gameFinished('Unentschieden!');
                 }
 };
 
-function noWinner(){
+function gameFinished(result){
     let headline = document.getElementById('headline');
-    headline.innerHTML = 'Unentschieden!';
+    headline.innerHTML = result;
     document.getElementById('table').style.pointerEvents = 'none';
-    document.getElementById('button').style.display = 'block';
-    crossPlayer = document.getElementById('crossPlayer');
-    circlePlayer = document.getElementById('circlePlayer');
     circlePlayer.style.opacity = '0.1';
     crossPlayer.style.opacity = '0.1';
     document.getElementById('button').style.pointerEvents = 'auto';
     document.getElementById('button').style.opacity = '1';
+
 }
+
 function getBackgroundURL(){
     field1 = document.getElementById('1').style.backgroundImage;
     field2 = document.getElementById('2').style.backgroundImage;
