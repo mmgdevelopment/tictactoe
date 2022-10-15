@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Tic Tac Toe</title>
+    <title>Tic Tac Toe 2.0</title>
 </head>
+
 <body onload="init()">
     <header>
-        <h1>Tic Tac Toe</h1>
+        <h1>Tic Tac Toe 2.0</h1>
     </header>
 
     <div class="canvas">
@@ -19,24 +21,25 @@
                 <img id="crossPlayer" src="./img/cross.svg" alt="" srcset="">
                 <img id="circlePlayer" src="./img/circle.svg" alt="" srcset="">
             </div>
-        <table id="table">
-            <tr>
-                <td onclick="fieldClicked(1)" id="1"></td>
-                <td onclick="fieldClicked(2)" id="2"></td>
-                <td onclick="fieldClicked(3)" id="3"></td>
-            </tr>
-            <tr>
-                <td onclick="fieldClicked(4)" id="4"></td>
-                <td onclick="fieldClicked(5)" id="5"></td>
-                <td onclick="fieldClicked(6)" id="6"></td>
-            </tr>
-            <tr>
-                <td onclick="fieldClicked(7)" id="7"></td>
-                <td onclick="fieldClicked(8)" id="8"></td>
-                <td onclick="fieldClicked(9)" id="9"></td>
-            </tr>
-        </table>
-        <button onclick="refresh()"  id="button" style="opacity: 0; pointer-events: none;">nochmal spielen</button>
+            <table id="table">
+                <tr>
+                    <td onclick="fieldClicked(1)" id="1"></td>
+                    <td onclick="fieldClicked(2)" id="2"></td>
+                    <td onclick="fieldClicked(3)" id="3"></td>
+                </tr>
+                <tr>
+                    <td onclick="fieldClicked(4)" id="4"></td>
+                    <td onclick="fieldClicked(5)" id="5"></td>
+                    <td onclick="fieldClicked(6)" id="6"></td>
+                </tr>
+                <tr>
+                    <td onclick="fieldClicked(7)" id="7"></td>
+                    <td onclick="fieldClicked(8)" id="8"></td>
+                    <td onclick="fieldClicked(9)" id="9"></td>
+                </tr>
+            </table>
+            <button onclick="refresh()" id="button" style="opacity: 0; pointer-events: none;">nochmal spielen</button>
     </div>
 </body>
+
 </html>
